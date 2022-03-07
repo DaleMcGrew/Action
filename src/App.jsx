@@ -20,6 +20,7 @@ const FAQ = React.lazy(() => import('./js/pages/FAQ'));
 const PageNotFound = React.lazy(() => import('./js/pages/PageNotFound'));
 const Privacy = React.lazy(() => import('./js/pages/Privacy'));
 const TermsOfService = React.lazy(() => import('./js/pages/TermsOfService'));
+const TwitterHandleLanding = React.lazy(() => import(/* webpackChunkName: 'TwitterHandleLanding' */ './js/pages/TwitterHandleLanding'));
 
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
     super(props);
     this.state = {
       doShowHeader: true,
-      doShowFooter: true,
+      // doShowFooter: true,
     };
     this.setShowHeader = this.setShowHeader.bind(this);
     this.setShowFooter = this.setShowFooter.bind(this);
@@ -51,20 +52,23 @@ class App extends Component {
   }
 
   setShowFooter (doShowFooter) {
-    this.setState({ doShowFooter });
+    console.log('doShowFooter:', doShowFooter);
+    // this.setState({ doShowFooter });
   }
 
   setShowHeaderFooter (doShow) {
     // console.log('setShowHeaderFooter -------------- doShow:', doShow);
     this.setState({
       doShowHeader: doShow,
-      doShowFooter: doShow,
+      // doShowFooter: doShow,
     });
   }
 
   render () {
     renderLog('App');
-    const { doShowHeader, doShowFooter } = this.state;
+    // const { doShowHeader } = this.state; // doShowFooter
+    const doShowFooter = false;
+    const doShowHeader = false;
     // console.log(`App doShowHeader: ${doShowHeader}, doShowFooter:${doShowFooter}`);
     return (
       <ErrorBoundary>
@@ -74,11 +78,15 @@ class App extends Component {
               <WeVoteRouter>
                 <MainHeaderBar displayHeader={doShowHeader} />
                 <Switch>
+                  <Route exact path="/" component={PageNotFound} />
                   <Route exact path="/attributions"><Attributions /></Route>
                   <Route exact path="/credits"><Credits /></Route>
                   <Route exact path="/faq"><FAQ /></Route>
                   <Route exact path="/privacy"><Privacy /></Route>
                   <Route exact path="/terms"><TermsOfService /></Route>
+                  <Route path="/:twitter_handle/:action_variable" exact component={TwitterHandleLanding} />
+                  <Route path="/:twitter_handle($)?" exact component={TwitterHandleLanding} />
+                  <Route path="/:twitter_handle" exact component={TwitterHandleLanding} />
                   <Route path="*" component={PageNotFound} />
                 </Switch>
                 <DelayedLoad waitBeforeShow={4000}>

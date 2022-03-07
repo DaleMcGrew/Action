@@ -36,6 +36,7 @@ const nonFluxState = {
   showShareModal: false,
   showSharedItemModal: false,
   showSignInModal: false,
+  showTwitterLandingPage: false,
   signInStateChanged: false,
   siteConfigurationHasBeenRetrieved: true, // set to false if we use siteConfiguration
   siteOwnerOrganizationWeVoteId: '',
@@ -142,6 +143,11 @@ export default {
     messageService.sendMessage('state updated showSignInModal');
   },
 
+  setShowTwitterLandingPage (show) {
+    nonFluxState.showTwitterLandingPage = show;
+    messageService.sendMessage('state updated showTwitterLandingPage');
+  },
+
   setSignInStateChanged (signin) {
     nonFluxState.signInStateChanged = signin;
     messageService.sendMessage('state updated signInStateChanged');
@@ -231,6 +237,11 @@ export default {
   getShareModalStep () {
     // console.log('AppObservableStore shareModalStep:', nonFluxState.shareModalStep);
     return nonFluxState.shareModalStep;
+  },
+
+  getShowTwitterLandingPage () {
+    // console.log('AppObservableStore getShowTwitterLandingPage:', nonFluxState.showTwitterLandingPage);
+    return nonFluxState.showTwitterLandingPage;
   },
 
   getSignInStateChanged () {

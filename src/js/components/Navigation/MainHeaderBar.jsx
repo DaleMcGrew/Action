@@ -14,7 +14,7 @@ import { renderLog } from '../../common/utils/logging';
 const HeaderBarLogo = loadable(() => import('./HeaderBarLogo'));
 const SignInButton = loadable(() => import('./SignInButton'));
 const SignInModalController = loadable(() => import('../Settings/SignInModalController'));
-const TopNavigationDesktopController = loadable(() => import('./TopNavigationDesktopController'));
+// const TopNavigationDesktopController = loadable(() => import('./TopNavigationDesktopController'));
 const VoterNameAndPhoto = loadable(() => import('./VoterNameAndPhoto'));
 
 
@@ -117,13 +117,6 @@ export default function MainHeaderBar (displayHeader) {
     setAnchorEl(null);
   };
 
-  const ourPromise = {
-    fontSize: 14,
-    padding: '10px 15px 24px',
-    lineHeight: 'unset',
-    opacity: '40%',
-  };
-
   const { FB, AppleID } = window;
   if (!FB) {
     initializeFacebookSDK();
@@ -145,9 +138,9 @@ export default function MainHeaderBar (displayHeader) {
                 <HeaderBarLogo />
               </Suspense>
             </IconButton>
-            <Suspense fallback={<span>&nbsp;</span>}>
-              <TopNavigationDesktopController />
-            </Suspense>
+            {/* <Suspense fallback={<span>&nbsp;</span>}> */}
+            {/*  <TopNavigationDesktopController /> */}
+            {/* </Suspense> */}
             <Typography variant="h6" className={classes.title}>
               &nbsp;
             </Typography>
@@ -192,10 +185,6 @@ export default function MainHeaderBar (displayHeader) {
                 open={open}
                 onClose={handleClose}
               >
-                <Typography variant="h6" className={classes.title} style={ourPromise}>
-                  Our Promise: We&apos;ll never sell your email.
-                </Typography>
-                <MenuItem className={classes.menuItem} onClick={() => handleClose('/edit-profile')}>Settings</MenuItem>
                 <MenuItem className={classes.menuItem}>
                   <OpenExternalWebSite
                     linkIdAttribute="weVoteBallot"
@@ -214,15 +203,12 @@ export default function MainHeaderBar (displayHeader) {
                     className={classes.ballotLink}
                   />
                 </MenuItem>
-                <MenuItem className={classes.menuItemMobileOnly} onClick={() => handleClose('/membership')}>Membership</MenuItem>
-                {/* <MenuItem className={classes.menuItem} onClick={() => handleClose('/search')}>Search</MenuItem> */}
                 <MenuItem className={classes.menuItem} onClick={() => handleCloseNoDestination()}>
                   <Suspense fallback={<span>&nbsp;</span>}>
                     <SignInButton classes={classes} />
                   </Suspense>
                 </MenuItem>
                 <span style={{ lineHeight: '28px' }}>&nbsp;</span>
-                <MenuItem className={classes.menuExtraItem} onClick={() => handleClose('/faq')}>Frequently asked questions</MenuItem>
                 <MenuItem className={classes.menuExtraItem} onClick={() => handleClose('/terms')}>Terms of service</MenuItem>
                 <MenuItem className={classes.menuExtraItem} onClick={() => handleClose('/privacy')}>Privacy Policy</MenuItem>
               </Menu>

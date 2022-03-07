@@ -53,7 +53,7 @@ module.exports = {
     new ESLintPlugin({ failOnError: false, failOnWarning: false  }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: 'We Vote Campaigns',
+      title: 'We Vote Action',
       template: path.resolve(__dirname, './src/index.html'),
     }),
     ...(bundleAnalysis ? [
