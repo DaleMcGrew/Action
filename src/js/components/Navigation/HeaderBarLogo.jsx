@@ -18,26 +18,29 @@ class HeaderBarLogo extends Component {
     const { classes } = this.props;
 
     const light = false;
+    const logoOn = false;
     return (
       <HeaderBarWrapper>
         <WeVoteLogoWrapper>
-          <Link
-            className={classes.logoLinkRoot}
-            to="/"
-            id="logoHeaderBar"
-          >
-            <img
-              width="141"
-              height="44"
-              alt="We Vote logo"
-              src={light ? logoLight : logoDark}
-            />
-            <SubtitleOuter>
-              <SubtitleInner>
-                admin
-              </SubtitleInner>
-            </SubtitleOuter>
-          </Link>
+          {logoOn && (
+            <Link
+              className={classes.logoLinkRoot}
+              to="/"
+              id="logoHeaderBar"
+            >
+              <img
+                width="141"
+                height="44"
+                alt="We Vote logo"
+                src={light ? logoLight : logoDark}
+              />
+              <SubtitleOuter>
+                <SubtitleInner>
+                  action
+                </SubtitleInner>
+              </SubtitleOuter>
+            </Link>
+          )}
         </WeVoteLogoWrapper>
       </HeaderBarWrapper>
     );
